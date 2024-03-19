@@ -15,7 +15,7 @@ jobs:
       - name: setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          cache: "yarn"
+          cache: "npm"
           node-version: ${{ matrix.node-version }}
       - name: Install
         run: npm ci
