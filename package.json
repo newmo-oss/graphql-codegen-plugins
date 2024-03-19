@@ -17,7 +17,7 @@
     "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo.git"
   },
   "license": "MIT",
-  "author": "newmo",
+  "author": "newmo, Inc.",
   "type": "commonjs",
   "main": "src/graphql-codegen-plugin-typescript-react-apollo.js",
   "files": [
@@ -26,7 +26,6 @@
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks",
-    "prepublishOnly": "npm run build",
     "updateSnapshot": "graphql-codegen --config ./test/graphql-codegen.ts",
     "test": "npm run updateSnapshot && tsc --noEmit -p test/snapshots"
   },
