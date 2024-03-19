@@ -1,6 +1,6 @@
 {
   "name": "@newmo/graphql-codegen-plugin-typescript-react-apollo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GraphQL Codegen Plugin to create React Hooks for client preset",
   "keywords": [
     "graphql",
