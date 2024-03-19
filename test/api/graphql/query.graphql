@@ -1,0 +1,16 @@
+query ListDestinationCandidates($text: String!) {
+  destinationCandidates(text: $text) {
+    id
+    name
+  }
+}
+
+query ListRideHistories {
+  rideHistories {
+    id
+    destination {
+      id
+      name
+    }
+  }
+}

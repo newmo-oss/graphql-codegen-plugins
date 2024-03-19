@@ -1,0 +1,55 @@
+{
+  "name": "@newmo/graphql-codegen-plugin-typescript-react-apollo",
+  "version": "1.0.0",
+  "description": "GraphQL Codegen Plugin to create React Hooks for client preset",
+  "keywords": [
+    "graphql",
+    "plugin",
+    "react",
+    "hook"
+  ],
+  "homepage": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo",
+  "bugs": {
+    "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo.git"
+  },
+  "license": "MIT",
+  "author": "newmo",
+  "type": "commonjs",
+  "main": "src/graphql-codegen-plugin-typescript-react-apollo.js",
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepare": "git config --local core.hooksPath .githooks",
+    "prepublishOnly": "npm run build",
+    "updateSnapshot": "graphql-codegen --config ./test/graphql-codegen.ts",
+    "test": "npm run updateSnapshot && tsc --noEmit -p test/snapshots"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "devDependencies": {
+    "@apollo/client": "^3.9.7",
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/client-preset": "^4.2.4",
+    "@types/node": "^20.11.29",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
