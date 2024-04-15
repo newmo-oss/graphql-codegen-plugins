@@ -1,16 +1,22 @@
 query ListDestinationCandidates($text: String!) {
-  destinationCandidates(text: $text) {
-    id
-    name
-  }
+    destinationCandidates(text: $text) {
+        id
+        name
+    }
 }
 
 query ListRideHistories {
-  rideHistories {
-    id
-    destination {
-      id
-      name
+    rideHistories {
+        id
+        destination {
+            id
+            name
+        }
     }
-  }
+}
+
+mutation CreateRide($message: String!) {
+    createExample(input: {message: $message}) {
+        message
+    }
 }

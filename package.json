@@ -19,14 +19,15 @@
   "license": "MIT",
   "author": "newmo, Inc.",
   "type": "commonjs",
-  "main": "src/graphql-codegen-plugin-typescript-react-apollo.js",
+  "main": "lib/graphql-codegen-plugin-typescript-react-apollo.js",
   "files": [
-    "src/"
+    "lib/"
   ],
   "scripts": {
+    "build": "tsc",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks",
-    "updateSnapshot": "graphql-codegen --config ./test/graphql-codegen.ts",
+    "updateSnapshot": "npm run build && graphql-codegen --config ./test/graphql-codegen.ts",
     "test": "npm run updateSnapshot && tsc --noEmit -p test/snapshots"
   },
   "lint-staged": {
@@ -46,7 +47,7 @@
     "@graphql-codegen/client-preset": "^4.2.4",
     "@types/node": "^20.11.29",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.5"
   },
   "publishConfig": {
     "access": "public"
