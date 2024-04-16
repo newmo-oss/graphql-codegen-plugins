@@ -1,27 +1,44 @@
 type Query {
-  """
-  検索文字列にマッチする目的地の候補
-  """
-  destinationCandidates(text: String!): [Destination!]!
+    """
+    検索文字列にマッチする目的地の候補
+    """
+    destinationCandidates(text: String!): [Destination!]!
 
-  """
-  乗車履歴
-  """
-  rideHistories: [RideHistory!]!
+    """
+    乗車履歴
+    """
+    rideHistories: [RideHistory!]!
 }
 
 type RideHistory {
-  "乗車履歴の ID"
-  id: ID!
+    "乗車履歴の ID"
+    id: ID!
 
-  "目的地"
-  destination: Destination!
+    "目的地"
+    destination: Destination!
 }
 
 type Destination {
-  "目的地の ID"
-  id: ID!
+    "目的地の ID"
+    id: ID!
 
-  "目的地の名前"
-  name: String!
+    "目的地の名前"
+    name: String!
+}
+
+input RideHistoryInput {
+    "目的地の名前"
+    name: String!
+}
+type RideHistoryOutput {
+    "乗車履歴の ID"
+    id: ID!
+    "目的地"
+    name: String!
+}
+type Mutation {
+    """
+    乗車履歴を作成する
+    """
+    createRideHistory(input: RideHistoryInput!): RideHistoryOutput!
 }

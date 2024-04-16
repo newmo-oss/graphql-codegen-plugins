@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query ListDestinationCandidates($text: String!) {\n  destinationCandidates(text: $text) {\n    id\n    name\n  }\n}\n\nquery ListRideHistories {\n  rideHistories {\n    id\n    destination {\n      id\n      name\n    }\n  }\n}": types.ListDestinationCandidatesDocument,
+    "query ListDestinationCandidates($text: String!) {\n  destinationCandidates(text: $text) {\n    id\n    name\n  }\n}\n\nquery ListRideHistories {\n  rideHistories {\n    id\n    destination {\n      id\n      name\n    }\n  }\n}\n\nmutation CreateRideHistory($desinationName: String!) {\n  createRideHistory(input: {name: $desinationName}) {\n    id\n    name\n  }\n}": types.ListDestinationCandidatesDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ListDestinationCandidates($text: String!) {\n  destinationCandidates(text: $text) {\n    id\n    name\n  }\n}\n\nquery ListRideHistories {\n  rideHistories {\n    id\n    destination {\n      id\n      name\n    }\n  }\n}"): (typeof documents)["query ListDestinationCandidates($text: String!) {\n  destinationCandidates(text: $text) {\n    id\n    name\n  }\n}\n\nquery ListRideHistories {\n  rideHistories {\n    id\n    destination {\n      id\n      name\n    }\n  }\n}"];
+export function graphql(source: "query ListDestinationCandidates($text: String!) {\n  destinationCandidates(text: $text) {\n    id\n    name\n  }\n}\n\nquery ListRideHistories {\n  rideHistories {\n    id\n    destination {\n      id\n      name\n    }\n  }\n}\n\nmutation CreateRideHistory($desinationName: String!) {\n  createRideHistory(input: {name: $desinationName}) {\n    id\n    name\n  }\n}"): (typeof documents)["query ListDestinationCandidates($text: String!) {\n  destinationCandidates(text: $text) {\n    id\n    name\n  }\n}\n\nquery ListRideHistories {\n  rideHistories {\n    id\n    destination {\n      id\n      name\n    }\n  }\n}\n\nmutation CreateRideHistory($desinationName: String!) {\n  createRideHistory(input: {name: $desinationName}) {\n    id\n    name\n  }\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
