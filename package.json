@@ -23,6 +23,9 @@
   "files": [
     "lib/"
   ],
+  "workspaces": [
+    "./test"
+  ],
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
@@ -47,7 +50,8 @@
     "@graphql-codegen/client-preset": "^4.2.4",
     "@types/node": "^20.11.29",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@mizdra/graphql-codegen-typescript-fabbrica": "^0.5.0"
   },
   "publishConfig": {
     "access": "public"

@@ -41,7 +41,12 @@ const config: CodegenConfig = {
         './api/generated/hooks.tsx': {
             'plugins': [
                 '@newmo/graphql-codegen-plugin-typescript-react-apollo'
-            ]
+            ],
+            config: {
+                // path to generated types
+                // In this case, it refer './api/generated/graphql.ts'
+                typesFile: './graphql'
+            }
         }
     }
 };

@@ -3,7 +3,7 @@
 import * as Apollo from '@apollo/client';
 import { ListDestinationCandidatesDocument, ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables } from './graphql';
 import { ListRideHistoriesDocument, ListRideHistoriesQuery, ListRideHistoriesQueryVariables } from './graphql';
-import { CreateRideDocument, CreateRideMutation, CreateRideMutationVariables } from './graphql';
+import { CreateRideHistoryDocument, CreateRideHistoryMutation, CreateRideHistoryMutationVariables } from './graphql';
 export function useListDestinationCandidatesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables>): Apollo.UseSuspenseQueryResult<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables> {
     const options = { ...baseOptions };
     return Apollo.useSuspenseQuery<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables>(ListDestinationCandidatesDocument, options);
@@ -12,7 +12,7 @@ export function useListRideHistoriesSuspenseQuery(baseOptions?: Apollo.SuspenseQ
     const options = { ...baseOptions };
     return Apollo.useSuspenseQuery<ListRideHistoriesQuery, ListRideHistoriesQueryVariables>(ListRideHistoriesDocument, options);
 }
-export function useCreateRideSuspenseMutation(baseOptions?: Apollo.MutationHookOptions<CreateRideMutation, CreateRideMutationVariables>): Apollo.MutationTuple<CreateRideMutation, CreateRideMutationVariables> {
+export function useCreateRideHistorySuspenseMutation(baseOptions?: Apollo.MutationHookOptions<CreateRideHistoryMutation, CreateRideHistoryMutationVariables>): Apollo.MutationTuple<CreateRideHistoryMutation, CreateRideHistoryMutationVariables> {
     const options = { ...baseOptions };
-    return Apollo.useMutation<CreateRideMutation, CreateRideMutationVariables>(CreateRideDocument, options);
+    return Apollo.useMutation<CreateRideHistoryMutation, CreateRideHistoryMutationVariables>(CreateRideHistoryDocument, options);
 }

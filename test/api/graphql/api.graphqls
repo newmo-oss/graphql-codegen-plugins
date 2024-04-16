@@ -26,12 +26,19 @@ type Destination {
     name: String!
 }
 
-input ExampleInput {
-    message: String!
+input RideHistoryInput {
+    "目的地の名前"
+    name: String!
 }
-type ExampleOutput {
-    message: String!
+type RideHistoryOutput {
+    "乗車履歴の ID"
+    id: ID!
+    "目的地"
+    name: String!
 }
 type Mutation {
-    createExample(input: ExampleInput!):ExampleOutput!
+    """
+    乗車履歴を作成する
+    """
+    createRideHistory(input: RideHistoryInput!): RideHistoryOutput!
 }

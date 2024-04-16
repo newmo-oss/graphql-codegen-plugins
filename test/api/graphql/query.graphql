@@ -15,8 +15,9 @@ query ListRideHistories {
     }
 }
 
-mutation CreateRide($message: String!) {
-    createExample(input: {message: $message}) {
-        message
+mutation CreateRideHistory($desinationName: String!) {
+    createRideHistory(input: { name: $desinationName }){
+        id
+        name
     }
 }
