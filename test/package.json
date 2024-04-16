@@ -15,7 +15,8 @@
     "react-dom": "^18",
     "next": "14.2.1",
     "graphql": "^16.8.1",
-    "@apollo/client": "^3.9.11"
+    "@apollo/client": "^3.9.11",
+    "react-error-boundary": "^4.0.13"
   },
   "devDependencies": {
     "typescript": "^5",
