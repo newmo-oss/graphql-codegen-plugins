@@ -31,7 +31,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks",
     "updateSnapshot": "npm run build && graphql-codegen --config ./test/graphql-codegen.ts",
-    "test": "npm run updateSnapshot && tsc --noEmit -p test/snapshots"
+    "test": "npm run updateSnapshot && cd test && npm run build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [

@@ -10,7 +10,7 @@ import type {
   RideHistory,
   RideHistoryInput,
   RideHistoryOutput,
-} from './graphql.js';
+} from './graphql';
 
 export * from '@mizdra/graphql-codegen-typescript-fabbrica/helper';
 
