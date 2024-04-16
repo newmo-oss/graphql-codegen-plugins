@@ -4,9 +4,17 @@ import {
     useCreateRideHistorySuspenseMutation,
     useListRideHistoriesSuspenseQuery
 } from "../../../test/snapshots/typescript/hooks";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function Home() {
+    const [isSSR, setIsSSR] = useState(true);
+    useEffect(() => {
+        setIsSSR(false);
+    }, []);
+    if (isSSR) {
+        return <div>SSR...</div>;
+    }
+
     const query = useListRideHistoriesSuspenseQuery();
     const [mutate, { data, loading, error }] = useCreateRideHistorySuspenseMutation();
     const onClick = () => {
