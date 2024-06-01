@@ -23,6 +23,9 @@ importers:
       '@apollo/client':
         specifier: ^3.9.11
         version: 3.10.4(@types/react@18.3.3)(graphql-ws@5.16.0(graphql@16.8.1))(graphql@16.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@graphql-typed-document-node/core':
+        specifier: ^3.2.0
+        version: 3.2.0(graphql@16.8.1)
       graphql:
         specifier: ^16.8.1
         version: 16.8.1
