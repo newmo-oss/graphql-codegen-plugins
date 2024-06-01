@@ -1,0 +1,59 @@
+"""
+@exampleString directive specifies an example value for a String field.
+This example value is used in the fake data.
+
+Note: This is for @newmo/graphql-fake-server
+"""
+directive @exampleString(
+    """
+    The value of the String field.
+    @exampleString(value: "example")
+    """
+    value: String!
+) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+
+type Query {
+    """
+    検索文字列にマッチする目的地の候補
+    """
+    destinationCandidates(text: String!): [Destination!]!
+
+    """
+    乗車履歴
+    """
+    rideHistories: [RideHistory!]!
+}
+
+type RideHistory {
+    "乗車履歴の ID"
+    id: ID!
+
+    "目的地"
+    destination: Destination!
+}
+
+type Destination {
+    "目的地の ID"
+    id: ID!
+
+    "目的地の名前"
+    name: String! @exampleString(value: "Osaka")
+}
+
+input RideHistoryInput {
+    "目的地の名前"
+    name: String! @exampleString(value: "Tokyo")
+}
+type RideHistoryOutput {
+    "乗車履歴の ID"
+    id: ID!
+    "目的地"
+    name: String! @exampleString(value: "Tokyo")
+}
+type Mutation {
+    """
+    乗車履歴を作成する
+    """
+    createRideHistory(input: RideHistoryInput!): RideHistoryOutput!
+}

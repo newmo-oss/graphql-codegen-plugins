@@ -1,0 +1,56 @@
+{
+  "targetDefaults": {
+    "dev": {
+      "dependsOn": []
+    },
+    "dev:api": {
+      "dependsOn": []
+    },
+    "build": {
+      "dependsOn": [],
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/lib",
+        "{projectRoot}/dist",
+        "{projectRoot}/out",
+        "{projectRoot}/.next"
+      ]
+    },
+    "start": {
+      "dependsOn": []
+    },
+    "lint": {
+      "dependsOn": []
+    },
+    "format": {
+      "dependsOn": []
+    },
+    "prepare": {
+      "dependsOn": []
+    },
+    "updateSnapshot": {
+      "dependsOn": [],
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/**/snapshots",
+        "{projectRoot}/**/generated"
+      ]
+    },
+    "codegen": {
+      "dependsOn": [],
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/**/snapshots",
+        "{projectRoot}/**/generated"
+      ]
+    },
+    "test": {
+      "dependsOn": [],
+      "cache": true,
+      "outputs": [
+        "{projectRoot}/**/snapshots",
+        "{projectRoot}/**/generated"
+      ]
+    }
+  }
+}

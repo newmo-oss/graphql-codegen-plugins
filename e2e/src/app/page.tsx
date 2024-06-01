@@ -3,10 +3,9 @@ import styles from "./page.module.css";
 import {
     useCreateRideHistorySuspenseMutation,
     useListRideHistoriesSuspenseQuery
-} from "../../../test/snapshots/typescript/hooks";
+} from "../../generated/typescript/hooks";
 import { Suspense, useEffect, useState } from "react";
 const Main = () => {
-
     const query = useListRideHistoriesSuspenseQuery();
     const [mutate, { data, loading, error }] = useCreateRideHistorySuspenseMutation();
     const onClick = () => {
@@ -27,15 +26,17 @@ const Main = () => {
                     ))}
                 </ul>
             </Suspense>
-            <button onClick={onClick}>Mutate</button>
+            <button onClick={onClick} data-testid={"mutate-button"}>
+                Mutate
+            </button>
             <div>
                 {loading && <p>Mutate Loading...</p>}
                 {error && <p>Mutate Error...</p>}
-                {data && <p>Mutate Success... → {data.createRideHistory.name}</p>}
+                {data && <p data-testid={"mutate-result"}>Mutate Success... → {data.createRideHistory.name}</p>}
             </div>
         </main>
     );
-}
+};
 export default function Home() {
     const [isSSR, setIsSSR] = useState(true);
     useEffect(() => {

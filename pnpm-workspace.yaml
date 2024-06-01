@@ -1,0 +1,4 @@
+packages:
+    - "packages/@newmo/*"
+    - "e2e"
+

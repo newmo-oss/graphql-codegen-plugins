@@ -18,12 +18,6 @@ const config: CodegenConfig = {
             config: {
                 typesFile: "./graphql" // required
             }
-        },
-        "./test/snapshots/typescript/fabbrica.ts": {
-            plugins: ["@mizdra/graphql-codegen-typescript-fabbrica"],
-            config: {
-                typesFile: "./graphql" // required
-            }
         }
     }
 };
