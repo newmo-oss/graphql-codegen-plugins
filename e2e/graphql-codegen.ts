@@ -7,10 +7,13 @@ const config: CodegenConfig = {
     generates: {
         "./generated/typescript/": {
             preset: "client",
+            config: {
+                nonOptionalTypename: true
+            },
             presetConfig: {
                 fragmentMasking: { unmaskFunctionName: "getFragmentData" }
             },
-            documentTransforms: []
+            plugins: ["@newmo/graphql-codegen-plugin-type-guards"]
         },
         "./generated/typescript/hooks.tsx": {
             plugins: ["@newmo/graphql-codegen-plugin-typescript-react-apollo"],

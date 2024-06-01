@@ -1,44 +1,73 @@
+"""
+@exampleString directive specifies an example value for a String field.
+This example value is used in the fake data.
+
+Note: This is for @newmo/graphql-fake-server
+"""
+directive @exampleString(
+    """
+    The value of the String field.
+    @exampleString(value: "example")
+    """
+    value: String!
+) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+
 type Query {
     """
-    検索文字列にマッチする目的地の候補
+    Get the list of destination candidates.
     """
     destinationCandidates(text: String!): [Destination!]!
 
     """
-    乗車履歴
+    Get the list of ride histories.
     """
     rideHistories: [RideHistory!]!
 }
 
 type RideHistory {
-    "乗車履歴の ID"
+    "ID of the ride history."
     id: ID!
 
-    "目的地"
+    "Destination of the ride history."
     destination: Destination!
 }
 
+enum DestinationType {
+    "Airport"
+    AIRPORT
+
+    "Station"
+    STATION
+
+    "City"
+    CITY
+}
+
 type Destination {
-    "目的地の ID"
+    "ID of the destination."
     id: ID!
 
-    "目的地の名前"
-    name: String!
+    "Name of the destination."
+    name: String! @exampleString(value: "Osaka")
+
+    "Type of the destination."
+    type: DestinationType!
 }
 
 input RideHistoryInput {
-    "目的地の名前"
-    name: String!
+    "Name of the destination."
+    name: String! @exampleString(value: "Tokyo")
 }
 type RideHistoryOutput {
-    "乗車履歴の ID"
+    "ID of the ride history."
     id: ID!
-    "目的地"
-    name: String!
+    "Name of the destination."
+    name: String! @exampleString(value: "Tokyo")
 }
 type Mutation {
     """
-    乗車履歴を作成する
+    Create a ride history.
     """
     createRideHistory(input: RideHistoryInput!): RideHistoryOutput!
 }
