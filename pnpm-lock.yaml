@@ -74,6 +74,10 @@ importers:
         version: 5.4.5
 
   packages/@newmo/graphql-codegen-plugin-typescript-react-apollo:
+    dependencies:
+      '@graphql-codegen/plugin-helpers':
+        specifier: ^5.0.4
+        version: 5.0.4(graphql@16.8.1)
     devDependencies:
       '@graphql-codegen/cli':
         specifier: 5.0.0
