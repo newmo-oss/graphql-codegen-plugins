@@ -65,12 +65,14 @@ const DisplayError = ({ errors }: { errors: ReturnType<typeof useMain>["errors"]
     return (
         <div data-testid={"error"}>
             {errors.map((error) => {
+                // Handle Validation errors
                 if ("type" in error) {
                     switch (error.type) {
                         case "MissingNameError":
                             return <div key={error.message}>{error.message}</div>;
                     }
                 }
+                // Handle GraphQL errors field
                 // FIXME: isTextError does not work narrowing
                 // https://github.com/microsoft/TypeScript/issues/55766
                 if ("__typename" in error) {
