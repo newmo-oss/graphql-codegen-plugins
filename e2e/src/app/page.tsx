@@ -73,7 +73,7 @@ const DisplayError = ({ errors }: { errors: ReturnType<typeof useMain>["errors"]
                     }
                 }
                 // Handle GraphQL errors field
-                // FIXME: isTextError does not work narrowing
+                // Note: isTextError does not work narrowing
                 // https://github.com/microsoft/TypeScript/issues/55766
                 if ("__typename" in error) {
                     switch (error.__typename) {
