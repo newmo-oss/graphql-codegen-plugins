@@ -18,7 +18,7 @@ const config: CodegenConfig = {
             config: {
                 typesFile: "./graphql" // required
             }
-        },
+        }
     }
 };
 

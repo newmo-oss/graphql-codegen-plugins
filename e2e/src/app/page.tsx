@@ -6,7 +6,6 @@ import {
 } from "../../generated/typescript/hooks";
 import { Suspense, useEffect, useState } from "react";
 const Main = () => {
-
     const query = useListRideHistoriesSuspenseQuery();
     const [mutate, { data, loading, error }] = useCreateRideHistorySuspenseMutation();
     const onClick = () => {
@@ -27,7 +26,9 @@ const Main = () => {
                     ))}
                 </ul>
             </Suspense>
-            <button onClick={onClick} data-testid={"mutate-button"}>Mutate</button>
+            <button onClick={onClick} data-testid={"mutate-button"}>
+                Mutate
+            </button>
             <div>
                 {loading && <p>Mutate Loading...</p>}
                 {error && <p>Mutate Error...</p>}
@@ -35,7 +36,7 @@ const Main = () => {
             </div>
         </main>
     );
-}
+};
 export default function Home() {
     const [isSSR, setIsSSR] = useState(true);
     useEffect(() => {

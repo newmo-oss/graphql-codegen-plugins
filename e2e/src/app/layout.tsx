@@ -12,16 +12,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children
-                                   }: Readonly<{
+    children
+}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html lang="en">
-        <body className={inter.className}>
-        <ErrorBoundary fallback={<>...</>}>
-            <ApolloWrapper>{children}</ApolloWrapper>
-        </ErrorBoundary></body>
+            <body className={inter.className}>
+                <ErrorBoundary fallback={<>...</>}>
+                    <ApolloWrapper>{children}</ApolloWrapper>
+                </ErrorBoundary>
+            </body>
         </html>
     );
 }
