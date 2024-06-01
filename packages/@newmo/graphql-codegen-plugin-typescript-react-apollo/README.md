@@ -18,7 +18,7 @@ Install with [npm](https://www.npmjs.com/):
 
     npm install @newmo/graphql-codegen-plugin-typescript-react-apollo --save-dev
     # this plugin depends on @graphql-codegen/client-preset
-    npm install @graphql-codegen/cli @graphql-codegen/client-preset --save-dev
+    npm install @graphql-codegen/cli @graphql-codegen/client-preset @graphql-typed-document-node/core --save-dev
 
 ## Usage
 
