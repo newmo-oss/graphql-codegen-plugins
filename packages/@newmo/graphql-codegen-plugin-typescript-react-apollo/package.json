@@ -34,22 +34,10 @@
     "updateSnapshot": "npm run build && npm run codegen",
     "test": "npm run updateSnapshot && cd test && npm run build"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write"
-    ]
-  },
-  "prettier": {
-    "printWidth": 120,
-    "singleQuote": false,
-    "tabWidth": 4,
-    "trailingComma": "none"
-  },
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/client-preset": "^4.2.4",
     "@types/node": "^20.11.29",
-    "prettier": "^3.2.5",
     "typescript": "^5.4.5"
   },
   "publishConfig": {

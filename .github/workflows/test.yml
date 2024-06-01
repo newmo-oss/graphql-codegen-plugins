@@ -43,5 +43,5 @@ jobs:
       - name: Build All
         run: pnpm run build
       - name: Playwright Test
-        run: pnpm test
+        run: pnpm run e2e
         working-directory: e2e/
