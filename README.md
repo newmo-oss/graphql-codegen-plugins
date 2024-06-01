@@ -6,6 +6,8 @@ This monorepo contains GraphQL Code Generator plugins.
 
 - [@newmo/graphql-codegen-plugin-typescript-react-apollo](./packages/@newmo/graphql-codegen-plugin-typescript-react-apollo)
   - TypeScript React Apollo plugin for GraphQL Code Generator
+- [@newmo/graphql-codegen-plugin-type-guards](./packages/@newmo/graphql-codegen-plugin-type-guards)
+  - TypeScript type guards plugin for GraphQL Code Generator
 
 ## Development
 

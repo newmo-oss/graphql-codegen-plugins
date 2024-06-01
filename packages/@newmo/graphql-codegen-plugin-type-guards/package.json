@@ -1,0 +1,51 @@
+{
+  "name": "@newmo/graphql-codegen-plugin-type-guards",
+  "version": "1.1.0",
+  "description": "GraphQL Codegen Plugin to create type guards function for TypeScript",
+  "keywords": [
+    "graphql",
+    "plugin",
+    "typescript"
+  ],
+  "homepage": "https://github.com/newmo-oss/graphql-codegen-plugins",
+  "bugs": {
+    "url": "https://github.com/newmo-oss/graphql-codegen-plugins/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/newmo-oss/graphql-codegen-plugins.git"
+  },
+  "license": "MIT",
+  "author": "newmo, Inc.",
+  "type": "commonjs",
+  "main": "lib/graphql-codegen-plugin-type-guards.js",
+  "files": [
+    "lib/"
+  ],
+  "workspaces": [
+    "./test"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "codegen": "graphql-codegen --config ./test/graphql-codegen.ts",
+    "updateSnapshot": "npm run build && npm run codegen",
+    "test": "npm run updateSnapshot && cd test && npm run build"
+  },
+  "peerDependencies": {
+    "graphql": "^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "@graphql-codegen/plugin-helpers": "^5.0.4"
+  },
+  "devDependencies": {
+    "graphql": "^16.8.1",
+    "@graphql-codegen/cli": "5.0.0",
+    "@graphql-codegen/client-preset": "^4.2.4",
+    "@types/node": "^20.11.29",
+    "typescript": "^5.4.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

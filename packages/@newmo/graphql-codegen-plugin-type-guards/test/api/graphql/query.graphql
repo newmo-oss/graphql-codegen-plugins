@@ -2,6 +2,7 @@ query ListDestinationCandidates($text: String!) {
     destinationCandidates(text: $text) {
         id
         name
+        type
     }
 }
 
@@ -11,6 +12,7 @@ query ListRideHistories {
         destination {
             id
             name
+            type
         }
     }
 }

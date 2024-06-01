@@ -18,14 +18,14 @@ export type Scalars = {
 
 /** Specified Error type for createRideHistory mutation. */
 export type CreateRideHistoryErrorDetails = Error & {
-  __typename: 'CreateRideHistoryErrorDetails';
+  __typename?: 'CreateRideHistoryErrorDetails';
   code: Scalars['Int']['output'];
-  localizedMessage: Scalars['String']['output'];
+  localizedMessage?: Maybe<Scalars['String']['output']>;
   message: Scalars['String']['output'];
 };
 
 export type Destination = {
-  __typename: 'Destination';
+  __typename?: 'Destination';
   /** ID of the destination. */
   id: Scalars['ID']['output'];
   /** Name of the destination. */
@@ -43,7 +43,6 @@ export enum DestinationType {
   Station = 'STATION'
 }
 
-/** Error interface */
 export type Error = {
   /** Localized error message. */
   localizedMessage: Scalars['String']['output'];
@@ -54,7 +53,7 @@ export type Error = {
 export type ErrorUnion = CreateRideHistoryErrorDetails | TextError;
 
 export type Mutation = {
-  __typename: 'Mutation';
+  __typename?: 'Mutation';
   /** Create a ride history. */
   createRideHistory: RideHistoryOutput;
 };
@@ -65,7 +64,7 @@ export type MutationCreateRideHistoryArgs = {
 };
 
 export type Query = {
-  __typename: 'Query';
+  __typename?: 'Query';
   /** Get the list of destination candidates. */
   destinationCandidates: Array<Destination>;
   /** Get the list of ride histories. */
@@ -78,7 +77,7 @@ export type QueryDestinationCandidatesArgs = {
 };
 
 export type RideHistory = {
-  __typename: 'RideHistory';
+  __typename?: 'RideHistory';
   /** Destination of the ride history. */
   destination: Destination;
   /** ID of the ride history. */
@@ -91,7 +90,7 @@ export type RideHistoryInput = {
 };
 
 export type RideHistoryOutput = {
-  __typename: 'RideHistoryOutput';
+  __typename?: 'RideHistoryOutput';
   /** Error. */
   errors: Array<ErrorUnion>;
   /** ID of the ride history. */
@@ -101,7 +100,7 @@ export type RideHistoryOutput = {
 };
 
 export type TextError = Error & {
-  __typename: 'TextError';
+  __typename?: 'TextError';
   /** Localized error message. */
   localizedMessage: Scalars['String']['output'];
   /** Error message. */
@@ -113,28 +112,27 @@ export type ListDestinationCandidatesQueryVariables = Exact<{
 }>;
 
 
-export type ListDestinationCandidatesQuery = { __typename: 'Query', destinationCandidates: Array<{ __typename: 'Destination', id: string, name: string }> };
+export type ListDestinationCandidatesQuery = { __typename?: 'Query', destinationCandidates: Array<{ __typename?: 'Destination', id: string, name: string, type: DestinationType }> };
 
 export type ListRideHistoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ListRideHistoriesQuery = { __typename: 'Query', rideHistories: Array<{ __typename: 'RideHistory', id: string, destination: { __typename: 'Destination', id: string, name: string } }> };
+export type ListRideHistoriesQuery = { __typename?: 'Query', rideHistories: Array<{ __typename?: 'RideHistory', id: string, destination: { __typename?: 'Destination', id: string, name: string, type: DestinationType } }> };
 
 export type CreateRideHistoryMutationVariables = Exact<{
   desinationName: Scalars['String']['input'];
 }>;
 
 
-export type CreateRideHistoryMutation = { __typename: 'Mutation', createRideHistory: { __typename: 'RideHistoryOutput', id: string, name: string, errors: Array<{ __typename: 'CreateRideHistoryErrorDetails', message: string } | { __typename: 'TextError', message: string, localizedMessage: string }> } };
+export type CreateRideHistoryMutation = { __typename?: 'Mutation', createRideHistory: { __typename?: 'RideHistoryOutput', id: string, name: string, errors: Array<{ __typename?: 'CreateRideHistoryErrorDetails', message: string } | { __typename?: 'TextError', message: string, localizedMessage: string }> } };
 
 
-export const ListDestinationCandidatesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListDestinationCandidates"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"text"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"destinationCandidates"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"text"},"value":{"kind":"Variable","name":{"kind":"Name","value":"text"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables>;
-export const ListRideHistoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListRideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"destination"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<ListRideHistoriesQuery, ListRideHistoriesQueryVariables>;
+export const ListDestinationCandidatesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListDestinationCandidates"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"text"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"destinationCandidates"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"text"},"value":{"kind":"Variable","name":{"kind":"Name","value":"text"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables>;
+export const ListRideHistoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListRideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"destination"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]}}]} as unknown as DocumentNode<ListRideHistoriesQuery, ListRideHistoriesQueryVariables>;
 export const CreateRideHistoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateRideHistory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"desinationName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createRideHistory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"desinationName"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"localizedMessage"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Error"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateRideHistoryMutation, CreateRideHistoryMutationVariables>;
 export const isCreateRideHistoryErrorDetails = (field: { __typename?: string; }): field is CreateRideHistoryErrorDetails => field.__typename === 'CreateRideHistoryErrorDetails';
 export const isDestination = (field: { __typename?: string; }): field is Destination => field.__typename === 'Destination';
 export const isErrorUnion = (field: { __typename?: string; }): field is ErrorUnion => {
-  if(field.__typename === undefined) return false;
   return ["CreateRideHistoryErrorDetails","TextError"].includes(field.__typename);           
 };
 export const isMutation = (field: { __typename?: string; }): field is Mutation => field.__typename === 'Mutation';
