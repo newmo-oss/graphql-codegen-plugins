@@ -15,12 +15,12 @@
     "codegen": "graphql-codegen --config ./graphql-codegen.ts"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.11",
+    "@apollo/client": "^3.10.4",
     "@graphql-typed-document-node/core": "^3.2.0",
     "graphql": "^16.8.1",
-    "next": "^15.0.0@rc",
-    "react": "19.0.0@rc",
-    "react-dom": "19.0.0@rc",
+    "next": "15.0.0-rc.0",
+    "react": "19.0.0-rc-935180c7e0-20240524",
+    "react-dom": "19.0.0-rc-935180c7e0-20240524",
     "react-error-boundary": "^4.0.13"
   },
   "devDependencies": {

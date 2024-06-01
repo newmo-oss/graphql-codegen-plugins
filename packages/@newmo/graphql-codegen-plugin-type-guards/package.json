@@ -28,7 +28,6 @@
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks",
     "codegen": "graphql-codegen --config ./test/graphql-codegen.ts",
     "updateSnapshot": "npm run build && npm run codegen",
     "test": "npm run updateSnapshot && cd test && npm run build"
