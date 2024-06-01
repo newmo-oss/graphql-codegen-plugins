@@ -1,37 +1,19 @@
 {
-  "name": "@newmo/graphql-codegen-plugin-typescript-react-apollo",
+  "private": true,
+  "name": "root",
   "version": "1.1.0",
-  "description": "GraphQL Codegen Plugin to create React Hooks for client preset",
-  "keywords": [
-    "graphql",
-    "plugin",
-    "react",
-    "hook"
-  ],
-  "homepage": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo",
-  "bugs": {
-    "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo.git"
-  },
-  "license": "MIT",
-  "author": "newmo, Inc.",
-  "type": "commonjs",
-  "main": "lib/graphql-codegen-plugin-typescript-react-apollo.js",
-  "files": [
-    "lib/"
-  ],
-  "workspaces": [
-    "./test"
-  ],
   "scripts": {
-    "build": "tsc",
+    "build": "lerna run build",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "prepare": "git config --local core.hooksPath .githooks",
-    "updateSnapshot": "npm run build && graphql-codegen --config ./test/graphql-codegen.ts",
-    "test": "npm run updateSnapshot && cd test && npm run build"
+    "updateSnapshot": "lerna run updateSnapshot",
+    "test": "lerna run test",
+    "versionup": "lerna version",
+    "ci:versionup:patch": "lerna version patch --no-push --no-git-tag-version --yes && npm run commit-version",
+    "ci:versionup:minor": "lerna version minor --no-push --no-git-tag-version --yes && npm run commit-version",
+    "ci:versionup:major": "lerna version major --no-push --no-git-tag-version --yes && npm run commit-version",
+    "commit-version": "git add . && git commit -m \"chore(release): v`node -p 'require(\"./lerna.json\").version'`\"",
+    "release": "lerna publish from-package"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
@@ -45,14 +27,7 @@
     "trailingComma": "none"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "5.0.0",
-    "@graphql-codegen/client-preset": "^4.2.4",
-    "@types/node": "^20.11.29",
-    "prettier": "^3.2.5",
-    "typescript": "^5.4.5",
-    "@mizdra/graphql-codegen-typescript-fabbrica": "^0.5.0"
+    "lerna": "^8.1.3"
   },
-  "publishConfig": {
-    "access": "public"
-  }
+  "packageManager": "pnpm@9.1.4+sha256.30a1801ac4e723779efed13a21f4c39f9eb6c9fbb4ced101bce06b422593d7c9"
 }

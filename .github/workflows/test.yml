@@ -1,5 +1,5 @@
 name: test
-on: [push, pull_request]
+on: [ push, pull_request ]
 permissions:
   contents: read
 jobs:
@@ -8,16 +8,40 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [ 18, 20 ]
     steps:
       - name: checkout
         uses: actions/checkout@v3
       - name: setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          cache: "npm"
+          cache: "pnpm"
           node-version: ${{ matrix.node-version }}
       - name: Install
-        run: npm ci
+        run: pnpm install
       - name: Test
-        run: npm test
+        run: pnpm test
+  e2e:
+    name: "Test on Node.js ${{ matrix.node-version }}"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 20 ]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          cache: "pnpm"
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: pnpm install
+      - name: Playwright Install
+        run: pnpm playwright install --with-deps
+        working-directory: e2e/
+      - name: Build All
+        run: pnpm run build
+      - name: Playwright Test
+        run: pnpm test
+        working-directory: e2e/
