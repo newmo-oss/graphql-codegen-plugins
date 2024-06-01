@@ -2,6 +2,79 @@
 
 [GraphQL Codegen Plugin](https://github.com/dotansimha/graphql-code-generator) to create TypeScript type guards for GraphQL types.
 
+```graphql
+type RideHistory {
+    "ID of the ride history."
+    id: ID!
+
+    "Destination of the ride history."
+    destination: Destination!
+}
+
+enum DestinationType {
+    "Airport"
+    AIRPORT
+
+    "Station"
+    STATION
+
+    "City"
+    CITY
+}
+
+type Destination {
+    "ID of the destination."
+    id: ID!
+
+    "Name of the destination."
+    name: String! @exampleString(value: "Osaka")
+
+    "Type of the destination."
+    type: DestinationType!
+}
+
+"""
+Error interface
+"""
+interface Error {
+    "Error message."
+    message: String!
+    "Localized error message."
+    localizedMessage: String!
+}
+type TextError implements Error {
+    "Error message."
+    message: String!
+
+    "Localized error message."
+    localizedMessage: String!
+}
+"""
+Specified Error type for createRideHistory mutation.
+"""
+type CreateRideHistoryErrorDetails implements Error{
+    code: Int!
+    message: String!
+    localizedMessage: String!
+}
+union ErrorUnion = TextError | CreateRideHistoryErrorDetails
+```
+
+->
+
+```ts
+// Type guard for each type
+export const isDestination = (field: { __typename?: string; }): field is Destination => field.__typename === 'Destination';
+export const isRideHistory = (field: { __typename?: string; }): field is RideHistory => field.__typename === 'RideHistory';
+// Union type guard
+export const isCreateRideHistoryErrorDetails = (field: { __typename?: string; }): field is CreateRideHistoryErrorDetails => field.__typename === 'CreateRideHistoryErrorDetails';
+export const isTextError = (field: { __typename?: string; }): field is TextError => field.__typename === 'TextError';
+export const isErrorUnion = (field: { __typename?: string; }): field is ErrorUnion => {
+    if(field.__typename === undefined) return false;
+    return ["CreateRideHistoryErrorDetails","TextError"].includes(field.__typename);
+};
+```
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
@@ -46,7 +119,7 @@ Run codegen:
 
 ## Example output
 
-See [test/snapshots/typescript](test/snapshots/typescript) for example output.
+See [test/snapshots/typescript/graphql.ts](test/snapshots/typescript/graphql.ts) for example output.
 
 ## Changelog
 
