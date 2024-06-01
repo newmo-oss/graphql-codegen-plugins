@@ -64,7 +64,7 @@ See [test/snapshots/typescript](test/snapshots/typescript) for example output.
 
 ## Changelog
 
-See [Releases page](https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo/releases).
+See [Releases page](https://github.com/newmo-oss/graphql-codegen-plugins/releases).
 
 ## Running tests
 
@@ -76,7 +76,7 @@ Install devDependencies and Run `npm test`:
 
 Pull requests and stars are always welcome.
 
-For bugs and feature requests, [please create an issue](https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo/issues).
+For bugs and feature requests, [please create an issue](https://github.com/newmo-oss/graphql-codegen-plugins/issues).
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`

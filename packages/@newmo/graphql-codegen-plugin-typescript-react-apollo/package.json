@@ -8,13 +8,13 @@
     "react",
     "hook"
   ],
-  "homepage": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo",
+  "homepage": "https://github.com/newmo-oss/graphql-codegen-plugins",
   "bugs": {
-    "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo/issues"
+    "url": "https://github.com/newmo-oss/graphql-codegen-plugins/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/newmo-oss/graphql-codegen-plugin-typescript-react-apollo.git"
+    "url": "https://github.com/newmo-oss/graphql-codegen-plugins.git"
   },
   "license": "MIT",
   "author": "newmo, Inc.",
