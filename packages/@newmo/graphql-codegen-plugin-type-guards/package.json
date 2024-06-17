@@ -1,6 +1,6 @@
 {
     "name": "@newmo/graphql-codegen-plugin-type-guards",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "GraphQL Codegen Plugin to create type guards function for TypeScript",
     "keywords": [
         "graphql",
