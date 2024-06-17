@@ -2,7 +2,6 @@ query ListDestinationCandidates($text: String!) {
     destinationCandidates(text: $text) {
         id
         name
-        type
     }
 }
 
@@ -12,7 +11,6 @@ query ListRideHistories {
         destination {
             id
             name
-            type
         }
     }
 }
@@ -21,13 +19,17 @@ mutation CreateRideHistory($desinationName: String!) {
     createRideHistory(input: { name: $desinationName }){
         id
         name
+    }
+}
+
+mutation CreateFooURL($input: FooURLInput!) {
+    createFooURL(input: $input) {
+        URL
         errors {
-            ... on TextError {
+            ... on CreateFooURLErrorDetail{
                 message
+                code
                 localizedMessage
-            }
-            ... on Error {
-                message
             }
         }
     }

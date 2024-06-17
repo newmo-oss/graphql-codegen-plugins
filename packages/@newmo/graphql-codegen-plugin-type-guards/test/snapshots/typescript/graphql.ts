@@ -16,11 +16,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type CreateFooUrlError = CreateFooUrlErrorDetail;
+
+export enum CreateFooUrlErrorCode {
+  FailedToCreateFooUrl = 'FAILED_TO_CREATE_FOO_URL'
+}
+
+export type CreateFooUrlErrorDetail = Error & {
+  __typename?: 'CreateFooURLErrorDetail';
+  code: CreateFooUrlErrorCode;
+  localizedMessage: Scalars['String']['output'];
+  message: Scalars['String']['output'];
+};
+
 /** Specified Error type for createRideHistory mutation. */
 export type CreateRideHistoryErrorDetails = Error & {
   __typename?: 'CreateRideHistoryErrorDetails';
   code: Scalars['Int']['output'];
-  localizedMessage?: Maybe<Scalars['String']['output']>;
+  localizedMessage: Scalars['String']['output'];
   message: Scalars['String']['output'];
 };
 
@@ -43,6 +56,7 @@ export enum DestinationType {
   Station = 'STATION'
 }
 
+/** Error interface */
 export type Error = {
   /** Localized error message. */
   localizedMessage: Scalars['String']['output'];
@@ -52,10 +66,41 @@ export type Error = {
 
 export type ErrorUnion = CreateRideHistoryErrorDetails | TextError;
 
+export type FooUrlInput = {
+  /** Foo URL */
+  URL: Scalars['String']['input'];
+};
+
+export type FooUrlPayload = {
+  __typename?: 'FooURLPayload';
+  /** Foo URL */
+  URL: Scalars['String']['output'];
+  /** Errors */
+  errors: Array<CreateFooUrlError>;
+};
+
+/**
+ * namingConvention test
+ * - URL
+ * - Create*
+ */
+export type FooUrlResource = {
+  __typename?: 'FooURLResource';
+  /** Foo URL */
+  URL: Scalars['String']['output'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
-  /** Create a ride history. */
+  /** Create Foo URL */
+  createFooURL: FooUrlPayload;
+  /** Create Ride History */
   createRideHistory: RideHistoryOutput;
+};
+
+
+export type MutationCreateFooUrlArgs = {
+  input: FooUrlInput;
 };
 
 
@@ -112,29 +157,45 @@ export type ListDestinationCandidatesQueryVariables = Exact<{
 }>;
 
 
-export type ListDestinationCandidatesQuery = { __typename?: 'Query', destinationCandidates: Array<{ __typename?: 'Destination', id: string, name: string, type: DestinationType }> };
+export type ListDestinationCandidatesQuery = { __typename?: 'Query', destinationCandidates: Array<{ __typename?: 'Destination', id: string, name: string }> };
 
 export type ListRideHistoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ListRideHistoriesQuery = { __typename?: 'Query', rideHistories: Array<{ __typename?: 'RideHistory', id: string, destination: { __typename?: 'Destination', id: string, name: string, type: DestinationType } }> };
+export type ListRideHistoriesQuery = { __typename?: 'Query', rideHistories: Array<{ __typename?: 'RideHistory', id: string, destination: { __typename?: 'Destination', id: string, name: string } }> };
 
 export type CreateRideHistoryMutationVariables = Exact<{
   desinationName: Scalars['String']['input'];
 }>;
 
 
-export type CreateRideHistoryMutation = { __typename?: 'Mutation', createRideHistory: { __typename?: 'RideHistoryOutput', id: string, name: string, errors: Array<{ __typename?: 'CreateRideHistoryErrorDetails', message: string } | { __typename?: 'TextError', message: string, localizedMessage: string }> } };
+export type CreateRideHistoryMutation = { __typename?: 'Mutation', createRideHistory: { __typename?: 'RideHistoryOutput', id: string, name: string } };
+
+export type CreateFooUrlMutationVariables = Exact<{
+  input: FooUrlInput;
+}>;
 
 
-export const ListDestinationCandidatesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListDestinationCandidates"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"text"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"destinationCandidates"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"text"},"value":{"kind":"Variable","name":{"kind":"Name","value":"text"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables>;
-export const ListRideHistoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListRideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"destination"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]}}]} as unknown as DocumentNode<ListRideHistoriesQuery, ListRideHistoriesQueryVariables>;
-export const CreateRideHistoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateRideHistory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"desinationName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createRideHistory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"desinationName"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextError"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"localizedMessage"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Error"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateRideHistoryMutation, CreateRideHistoryMutationVariables>;
+export type CreateFooUrlMutation = { __typename?: 'Mutation', createFooURL: { __typename?: 'FooURLPayload', URL: string, errors: Array<{ __typename?: 'CreateFooURLErrorDetail', message: string, code: CreateFooUrlErrorCode, localizedMessage: string }> } };
+
+
+export const ListDestinationCandidatesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListDestinationCandidates"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"text"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"destinationCandidates"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"text"},"value":{"kind":"Variable","name":{"kind":"Name","value":"text"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ListDestinationCandidatesQuery, ListDestinationCandidatesQueryVariables>;
+export const ListRideHistoriesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ListRideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"rideHistories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"destination"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]} as unknown as DocumentNode<ListRideHistoriesQuery, ListRideHistoriesQueryVariables>;
+export const CreateRideHistoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateRideHistory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"desinationName"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createRideHistory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"name"},"value":{"kind":"Variable","name":{"kind":"Name","value":"desinationName"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<CreateRideHistoryMutation, CreateRideHistoryMutationVariables>;
+export const CreateFooUrlDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateFooURL"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"FooURLInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createFooURL"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"URL"}},{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CreateFooURLErrorDetail"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}},{"kind":"Field","name":{"kind":"Name","value":"code"}},{"kind":"Field","name":{"kind":"Name","value":"localizedMessage"}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateFooUrlMutation, CreateFooUrlMutationVariables>;
+export const isCreateFooUrlError = (field: { __typename?: string; }): field is CreateFooUrlError => {
+  if(field.__typename === undefined) return false;
+  return ["CreateFooUrlErrorDetail"].includes(field.__typename);           
+};
+export const isCreateFooUrlErrorDetail = (field: { __typename?: string; }): field is CreateFooUrlErrorDetail => field.__typename === 'CreateFooUrlErrorDetail';
 export const isCreateRideHistoryErrorDetails = (field: { __typename?: string; }): field is CreateRideHistoryErrorDetails => field.__typename === 'CreateRideHistoryErrorDetails';
 export const isDestination = (field: { __typename?: string; }): field is Destination => field.__typename === 'Destination';
 export const isErrorUnion = (field: { __typename?: string; }): field is ErrorUnion => {
+  if(field.__typename === undefined) return false;
   return ["CreateRideHistoryErrorDetails","TextError"].includes(field.__typename);           
 };
+export const isFooUrlPayload = (field: { __typename?: string; }): field is FooUrlPayload => field.__typename === 'FooUrlPayload';
+export const isFooUrlResource = (field: { __typename?: string; }): field is FooUrlResource => field.__typename === 'FooUrlResource';
 export const isMutation = (field: { __typename?: string; }): field is Mutation => field.__typename === 'Mutation';
 export const isQuery = (field: { __typename?: string; }): field is Query => field.__typename === 'Query';
 export const isRideHistory = (field: { __typename?: string; }): field is RideHistory => field.__typename === 'RideHistory';

@@ -117,6 +117,13 @@ Run codegen:
 
     $ graphql-codegen --config graphql-codegen.ts
 
+## Options
+
+- `namingConvention` (optional): Naming convention for the generated types. Default is `change-case#pascalCase`.
+    - [Naming Convention](https://the-guild.dev/graphql/codegen/docs/config-reference/naming-convention)
+- `typesPrefix` (optional): Prefix for the generated types.
+- `typesSuffix` (optional): Suffix for the generated types.
+
 ## Example output
 
 See [test/snapshots/typescript/graphql.ts](test/snapshots/typescript/graphql.ts) for example output.

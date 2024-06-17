@@ -21,3 +21,16 @@ mutation CreateRideHistory($desinationName: String!) {
         name
     }
 }
+
+mutation CreateFooURL($input: FooURLInput!) {
+    createFooURL(input: $input) {
+        URL
+        errors {
+            ... on CreateFooURLErrorDetail{
+                message
+                code
+                localizedMessage
+            }
+        }
+    }
+}

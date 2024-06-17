@@ -1,15 +1,9 @@
 import type { CodegenPlugin } from "@graphql-codegen/plugin-helpers";
-
-export type PluginConfig = {
-    /**
-     * The path to the generated types file
-     * @example
-     * typeFile: "./graphql.ts"
-     **/
-    typesFile: string;
-};
-const plugin: CodegenPlugin<PluginConfig> = {
-    plugin(schema, documents, config, _info) {
+import { normalizeConfig, RawPluginConfig } from "./config";
+import { convertName } from "./convertName";
+const plugin: CodegenPlugin<RawPluginConfig> = {
+    plugin(schema, documents, rawConfig, _info) {
+        const config = normalizeConfig(rawConfig);
         // need to support mutation, query, subscription
         const generateSuspenseQuery = (name: string) => {
             return `export function use${name}SuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<${name}Query, ${name}QueryVariables>): Apollo.UseSuspenseQueryResult<${name}Query, ${name}QueryVariables> {
@@ -37,13 +31,13 @@ ${documents
         return document.document?.definitions?.map((definition) => {
             // query
             if (definition.kind === "OperationDefinition" && definition.operation === "query" && definition.name) {
-                return importQueryIdentifierName(definition.name.value);
+                return importQueryIdentifierName(convertName(definition.name.value, config));
             } else if (
                 definition.kind === "OperationDefinition" &&
                 definition.operation === "mutation" &&
                 definition.name
             ) {
-                return importMutationIdentifierName(definition.name.value);
+                return importMutationIdentifierName(convertName(definition.name.value, config));
             }
         });
     })
@@ -53,13 +47,13 @@ ${documents
         return document.document?.definitions?.map((definition) => {
             // query
             if (definition.kind === "OperationDefinition" && definition.operation === "query" && definition.name) {
-                return generateSuspenseQuery(definition.name.value);
+                return generateSuspenseQuery(convertName(definition.name.value, config));
             } else if (
                 definition.kind === "OperationDefinition" &&
                 definition.operation === "mutation" &&
                 definition.name
             ) {
-                return generateSuspenseMutation(definition.name.value);
+                return generateSuspenseMutation(convertName(definition.name.value, config));
             }
         });
     })

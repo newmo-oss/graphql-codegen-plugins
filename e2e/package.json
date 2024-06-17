@@ -28,7 +28,7 @@
         "@graphql-codegen/client-preset": "^4.2.4",
         "@newmo/graphql-codegen-plugin-type-guards": "workspace:*",
         "@newmo/graphql-codegen-plugin-typescript-react-apollo": "workspace:*",
-        "@newmo/graphql-fake-server": "^0.9.3",
+        "@newmo/graphql-fake-server": "^0.9.7",
         "@playwright/test": "^1.44.1",
         "@types/node": "^20",
         "@types/react": "npm:types-react@rc",

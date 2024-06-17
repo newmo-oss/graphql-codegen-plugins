@@ -60,8 +60,6 @@ Error interface
 interface Error {
     "Error message."
     message: String!
-    "Localized error message."
-    localizedMessage: String!
 }
 type TextError implements Error {
     "Error message."
@@ -93,10 +91,43 @@ type RideHistoryOutput {
     "Error."
     errors: [ErrorUnion!]!
 }
+"""
+namingConvention test
+- URL
+- Create*
+"""
+type FooURLResource {
+    "Foo URL"
+    URL: String!
+}
+input FooURLInput {
+    "Foo URL"
+    URL: String!
+}
+type FooURLPayload {
+    "Foo URL"
+    URL: String!
+    "Errors"
+    errors: [CreateFooURLError!]!
+}
+union CreateFooURLError = CreateFooURLErrorDetail
+type CreateFooURLErrorDetail implements Error {
+    code: CreateFooURLErrorCode!
+    message: String!
+    localizedMessage: String!
+}
+enum CreateFooURLErrorCode {
+    FAILED_TO_CREATE_FOO_URL
+}
 
 type Mutation {
     """
-    Create a ride history.
+    Create Ride History
     """
     createRideHistory(input: RideHistoryInput!): RideHistoryOutput!
+
+    """
+    Create Foo URL
+    """
+    createFooURL(input: FooURLInput!): FooURLPayload!
 }
