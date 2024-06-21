@@ -1,10 +1,9 @@
 "use client";
-import styles from "./page.module.css";
 import {
     useCreateRideHistorySuspenseMutation,
     useListRideHistoriesSuspenseQuery
 } from "../../generated/typescript/hooks";
-import { CreateRideHistoryMutationVariables } from "../../generated/typescript/graphql";
+import type { CreateRideHistoryMutationVariables } from "../../generated/typescript/graphql";
 
 import { Suspense, useActionState, useEffect, useState } from "react";
 import { GraphQLError } from "graphql/error";
@@ -51,6 +50,7 @@ function getGraphQLMutationResult<TData>(result: FetchResult<TData>):
         data: data
     };
 }
+
 // Error Handling
 const DisplayError = ({ errors }: { errors: ReturnType<typeof useMain>["errors"] }) => {
     if (!errors) return null;
@@ -128,7 +128,7 @@ const createCreateRideHistoryMutationVariables = (
 const useMain = () => {
     const query = useListRideHistoriesSuspenseQuery();
     const [mutate, { data }] = useCreateRideHistorySuspenseMutation();
-    const [errors, onClick, loading] = useActionState(async (prev: unknown, event: unknown) => {
+    const [errors, onClick, loading] = useActionState(async (_: unknown, __: unknown) => {
         const input = createCreateRideHistoryMutationVariables("test");
         if (!input.ok) {
             return input.errors;
@@ -147,13 +147,14 @@ const useMain = () => {
         }
         // When mutation is success, you can do something
         // TODO: do something
+        return null;
     }, null);
     return { query, onClick, data, loading, errors } as const;
 };
 const Main = () => {
-    const { loading, errors, query, onClick, data } = useMain();
+    const { errors, query, onClick, data } = useMain();
     return (
-        <main className={styles.main}>
+        <main>
             <Suspense fallback={<div>Loading...</div>}>
                 <ul>
                     {query.data?.rideHistories.map((ride) => (

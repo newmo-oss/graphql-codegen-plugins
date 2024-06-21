@@ -8,7 +8,8 @@ const config: CodegenConfig = {
         "./generated/typescript/": {
             preset: "client",
             config: {
-                nonOptionalTypename: true
+                nonOptionalTypename: true,
+                useTypeImports: true
             },
             presetConfig: {
                 fragmentMasking: { unmaskFunctionName: "getFragmentData" }
